@@ -1,11 +1,7 @@
 import React, { Fragment } from 'react';
-// import styled from "@emotion/styled";
-// import colors from "styles/colors";
-// import dimensions from "styles/dimensions";
+import { isMobile } from "react-device-detect";
 import PropTypes from 'prop-types'
 import TooltipText from './TooltipText';
-
-const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
 
 const HeroText = ({ tooltipId, tooltipText, children, ...props }) => (
 

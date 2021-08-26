@@ -9,6 +9,7 @@ import Button from "components/_ui/Button";
 import Layout from "components/Layout";
 import typefaces from '../styles/typefaces';
 import { Fragment } from 'react';
+import parseUrl from 'parse-url';
 
 const ProjectHeroContainer = styled("div")`
     background: ${colors.grey200};
@@ -152,7 +153,7 @@ const Project = ({ project, nextProject, meta }) => {
                         {RichText.asText(project.project_title)}
                     </ProjectTitle>
                     <ProjectMeta><p>{RichText.asText(project.project_designation)}</p> <span>&#9679;</span> <p>{RichText.asText(project.project_type)}</p> <span>&#9679;</span> <p>{RichText.asText(project.project_timeframe)}</p> </ProjectMeta>
-                    <ProjectLink><a href={project.project_website.url} target="_blank" rel="noreferrer" ><span role="img" aria-label="website">&#x1F310; </span>{url_domain(project.project_website.url)}</a></ProjectLink>
+                    <ProjectLink><a href={project.project_website.url} target="_blank" rel="noreferrer" ><span role="img" aria-label="website">&#x1F310; </span>{parseUrl(project.project_website.url).resource}</a></ProjectLink>
                 </ProjectHeroText>
                 {project.project_hero_image && (
                     <ProjectHeroContainer>
@@ -267,9 +268,3 @@ export const query = graphql`
         }
     }
 `
-
-const url_domain = (data) => {
-    var a = document.createElement('a');
-    a.href = data;
-    return (a.hostname);
-  }
