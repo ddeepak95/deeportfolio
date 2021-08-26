@@ -1,20 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import styled from "@emotion/styled";
 import Layout from "components/Layout";
 import ProjectCard from "components/ProjectCard";
+import Button from "../components/_ui/Button"
 
 const WorkTitle = styled("h1")`
     margin-bottom: 1em;
+`
+const WorkAfter = styled("div")`
+text-align: center;
+`
+
+const WorkAction = styled(Link)`
+margin-bottom: 10px;
 `
 
 const Work = ({ projects, meta }) => (
     <>
         <Helmet
-            title={`Work | Prist, Gatsby & Prismic Starter`}
-            titleTemplate={`%s | Work | Prist, Gatsby & Prismic Starter`}
+            title="Work"
+            titleTemplate={`%s | ${meta.title}`}
             meta={[
                 {
                     name: `description`,
@@ -68,6 +76,11 @@ const Work = ({ projects, meta }) => (
                     />
                 ))}
             </>
+            <WorkAfter>
+            <WorkAction to={"/everything-else"}>
+                <Button>See things other than work</Button>
+            </WorkAction>
+            </WorkAfter>
         </Layout>
     </>
 );

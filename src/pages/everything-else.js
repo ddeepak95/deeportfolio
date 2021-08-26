@@ -11,6 +11,7 @@ import Awards from "../components/Awards";
 import Skills from "../components/Skills";
 import Publications from "../components/Publications";
 import Volunteering from "../components/Volunteering";
+import GetInTouch from "../components/GetInTouch";
 
 const ResumeHead = styled("div")`
     margin-bottom: 3em;
@@ -124,10 +125,10 @@ div {
 
 `
 
-const Resume = ({ resume, meta }) => (
+const EverythingElse = ({ resume, meta }) => (
     <>
         <Helmet
-            title={`Resume`}
+            title={`Everything else`}
             titleTemplate={`%s | ${meta.title}`}
             meta={[
                 {
@@ -175,6 +176,7 @@ const Resume = ({ resume, meta }) => (
                 <Skills skills = { resume.skills }></Skills>
                 <Publications publications = { resume.publications }></Publications>
                 <Volunteering volunteering = { resume.volunteering } ></Volunteering>
+                <GetInTouch />
             </ResumeContainer>
         </Layout>
     </>
@@ -182,7 +184,7 @@ const Resume = ({ resume, meta }) => (
 
 
 
-Resume.propTypes = {
+EverythingElse.propTypes = {
     meta: PropTypes.object.isRequired,
     resume: PropTypes.object.isRequired
 };
@@ -193,7 +195,7 @@ export default ({ data }) => {
     const meta = data.site.siteMetadata;
     if (!doc) return null;
     return (
-        <Resume resume={doc.node} meta={meta}/>
+        <EverythingElse resume={doc.node} meta={meta}/>
     )
 }
 
@@ -215,7 +217,15 @@ export const query = graphql`
                     institution
                     year
                     name
-                  }
+                    link {
+                        _linkType
+                        ... on PRISMIC__ExternalLink {
+                          target
+                          _linkType
+                          url
+                        }
+                    }
+                    }
                   education {
                     courseName
                     institutionName
@@ -243,6 +253,14 @@ export const query = graphql`
                     description
                     orgName
                     title
+                    link {
+                        _linkType
+                        ... on PRISMIC__ExternalLink {
+                          target
+                          _linkType
+                          url
+                        }
+                    }
                   }
                 }
               }

@@ -86,7 +86,7 @@ const Header = () => (
                 </Link>
                 <Link
                     activeClassName="Link--is-active"
-                    to="/resume">
+                    to="/everything-else">
                     Everything else
                 </Link>
             </HeaderLinks>

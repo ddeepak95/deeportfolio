@@ -40,7 +40,6 @@ const Skills = ({ skills }) => (
         <SkillsContainer>
         {skills.map((skill, i) => (
             <Fragment key={i}>
-            {console.log(RichText.asText(skill.description))}
             <Skill css={css`background-color: ${colors[skill.color+"200"]}; color: ${colors[skill.color+"600"]}`}><HeroText tooltipId="skills" tooltipText={RichText.asText(skill.description)} >{skill.name[0].text}</HeroText></Skill> 
             </Fragment>  
          ))

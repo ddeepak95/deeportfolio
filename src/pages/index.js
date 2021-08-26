@@ -1,21 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
-import { RichText } from "prismic-reactjs";
 import { graphql, Link } from "gatsby";
 import styled from "@emotion/styled";
 import colors from "styles/colors";
 import dimensions from "styles/dimensions";
-import About from "components/About";
 import Layout from "components/Layout";
 import ProjectCard from "components/ProjectCard";
 import HeroText from "../components/_ui/HeroText";
+import Button from "../components/_ui/Button"
 
 
 const Hero = styled("div")`
     padding-top: 2.5em;
     padding-bottom: 3em;
-    margin-bottom: 6em;
+    margin-bottom: 4em;
     max-width: 830px;
 
     @media(max-width:${dimensions.maxwidthMobile}px) {
@@ -23,6 +22,7 @@ const Hero = styled("div")`
     }
 
     h1 {
+        font-size: 2.6em;
         margin-bottom: 1em;
 
         span {
@@ -51,7 +51,7 @@ const Hero = styled("div")`
 `
 
 const Section = styled("div")`
-    margin-bottom: 10em;
+    margin-bottom: 4em;
     display: flex;
     flex-direction: column;
 
@@ -65,39 +65,19 @@ const Section = styled("div")`
 `
 
 const WorkAction = styled(Link)`
-    font-weight: 600;
-    text-decoration: none;
-    color: currentColor;
-    transition: all 150ms ease-in-out;
-    margin-left: auto;
-
-    @media(max-width:${dimensions.maxwidthTablet}px) {
-       margin: 0 auto;
-    }
-
-    span {
-        margin-left: 1em;
-        transform: translateX(-8px);
-        display: inline-block;
-        transition: transform 400ms ease-in-out;
-    }
-
-    &:hover {
-        color: ${colors.blue500};
-        transition: all 150ms ease-in-out;
-
-        span {
-            transform: translateX(0px);
-            opacity: 1;
-            transition: transform 150ms ease-in-out;
-        }
-    }
+text-align: center;
+margin-bottom: 10px;
 `
 
-const RenderBody = ({ home, projects, meta }) => (
+const WorkHeading = styled("h3")`
+text-align: center;
+margin-bottom: 40px;
+`
+
+const RenderBody = ({ projects, meta }) => (
     <>
         <Helmet
-            title={meta.title}
+            title="Home"
             titleTemplate={`%s | ${meta.title}`}
             meta={[
                 {
@@ -138,14 +118,9 @@ const RenderBody = ({ home, projects, meta }) => (
             <h1>
                 I'm <HeroText tooltipId="hero" tooltipText="Actually my fullname is <strong>Deepak Varuvel Dennison</strong>. Kinda long yet cool, right?😁">Deepak</HeroText>, a simple person who loves to <HeroText tooltipId="hero" tooltipText="I like to read as well as learn by doing. Infact, this website itself is a result of the attempt to learn React. 🎓"> learn</HeroText> and <HeroText tooltipId="hero" tooltipText="🛠️I love to build stuff. This website is mostly about that.">build things</HeroText> esp. in the social impact space. I get very excited about all things education, design, and technology.
             </h1>
-            {/* <a href={home.hero_button_link.url}
-               target="_blank" rel="noopener noreferrer">
-                <Button>
-                    {RichText.render(home.hero_button_text)}
-                </Button>
-            </a> */}
         </Hero>
         <Section>
+            <WorkHeading>Check out my works below :)</WorkHeading>
             {projects.map((project, i) => (
                 <ProjectCard
                     key={i}
@@ -159,16 +134,18 @@ const RenderBody = ({ home, projects, meta }) => (
                 />
             ))}
             <WorkAction to={"/work"}>
-                See more work <span>&#8594;</span>
+                <Button className="Button--secondary">See more work</Button>
+            </WorkAction>
+            <WorkAction to={"/everything-else"}>
+                <Button>See everything else</Button>
             </WorkAction>
         </Section>
-        <Section>
-            {RichText.render(home.about_title)}
+        {/* <Section>
             <About
                 bio={home.about_bio}
                 socialLinks={home.about_links}
             />
-        </Section>
+        </Section> */}
     </>
 );
 
@@ -199,17 +176,6 @@ export const query = graphql`
             allHomepages {
                 edges {
                     node {
-                        hero_title
-                        hero_button_text
-                        hero_button_link {
-                            ... on PRISMIC__ExternalLink {
-                                _linkType
-                                url
-                            }
-                        }
-                        content
-                        about_title
-                        about_bio
                         about_links {
                             about_link
                         }

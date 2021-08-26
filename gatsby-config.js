@@ -4,9 +4,9 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `Deepak Varuvel Dennison | Personal Website`,
+    title: `Deepak Varuvel Dennison`,
         description: `A glimpse into Deepak's initiatives and engagements!`,
-    author: `Deepak Varuvel Dennison`,
+    author: `Deepak Varuvel Dennison | ddeepak95@gmail.com`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -40,10 +40,10 @@ module.exports = {
         name: `deepak-varuvel-dennison`,
         short_name: `deeportfolio`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `#4b84e5`,
+        theme_color: `#4b84e5`,
         display: `minimal-ui`,
-        icon: `src/images/oscar-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/icon.png`, // This path is relative to the root of the site.
       },
     },
     // https://www.gatsbyjs.org/packages/gatsby-plugin-google-analytics/

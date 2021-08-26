@@ -36,7 +36,7 @@ const globalStyles = css`
     }
 
     a{
-        color: ${colors.orange600};
+        color: ${colors.blue600};
         text-decoration: none;
     }
 

@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "components/_ui/Button";
 import styled from "@emotion/styled";
 import dimensions from "styles/dimensions";
 import { RichText } from "prismic-reactjs";
@@ -7,30 +6,26 @@ import PropTypes from "prop-types";
 
 const AboutContainer = styled("div")`
     padding-top: 1em;
-    display: grid;
-    grid-template-columns: 8em 1fr 8em;
-    grid-gap: 3em;
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap-reverse;
+    // flex-direction: column-reverse;
+    justify-content:space-between;
+    // align-items:center;
 
     @media(max-width: ${dimensions.maxwidthTablet}px) {
-        grid-template-columns: 1fr 3fr 1fr;
+
     }
 
     @media(max-width: ${dimensions.maxwidthMobile}px) {
-        grid-template-columns: 7em 1fr;
-        grid-template-rows: 3em 1fr;
-        grid-gap: 2em;
+
     }
 `
 
 const AboutLinkContainer = styled("div")`
     padding-top: 1em;
     padding-bottom: 3em;
-    display: flex;
-    flex-direction: column;
-
-    @media(max-width: ${dimensions.maxwidthMobile}px) {
-        grid-row: 2;
-    }
+    max-width: 200px;
 `
 
 const AboutLink = styled("a")`
@@ -59,25 +54,10 @@ const AboutLink = styled("a")`
 
 const AboutBio = styled("div")`
     padding-bottom: 3em;
-    max-width: 480px;
-
-
-    @media(max-width: ${dimensions.maxwidthMobile}px) {
-        grid-row: 2;
-    }
+    min-width: 300px;
+    // max-width: 480px;
 `
 
-const AboutActions = styled("div")`
-    padding-top: 1em;
-    padding-bottom: 3em;
-
-
-    @media(max-width: ${dimensions.maxwidthMobile}px) {
-        padding: 0;
-        grid-column: 1 / -1;
-        grid-row: 1;
-    }
-`
 
 
 const About = ({ bio, socialLinks }) => (
@@ -96,13 +76,6 @@ const About = ({ bio, socialLinks }) => (
         <AboutBio>
             {RichText.render(bio)}
         </AboutBio>
-        <AboutActions>
-            <a href="mailto:ddeepak95@@gmail.com" target="_blank" rel="noopener noreferrer">
-                <Button className="Button--secondary">
-                    Email me
-                </Button>
-            </a>
-        </AboutActions>
     </AboutContainer>
 )
 
