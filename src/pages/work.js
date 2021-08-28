@@ -5,7 +5,8 @@ import { graphql, Link } from "gatsby";
 import styled from "@emotion/styled";
 import Layout from "components/Layout";
 import ProjectCard from "components/ProjectCard";
-import Button from "../components/_ui/Button"
+import Button from "../components/_ui/Button";
+import ScrollAnimation from "react-animate-on-scroll";
 
 const WorkTitle = styled("h1")`
     margin-bottom: 1em;
@@ -64,6 +65,7 @@ const Work = ({ projects, meta }) => (
             </WorkTitle>
             <>
                 {projects.map((project, i) => (
+                    <ScrollAnimation offset={100} delay={50} animateIn='animate__fadeIn' animateOnce={true}>
                     <ProjectCard
                         key={i}
                         category={project.node.project_designation}
@@ -74,6 +76,7 @@ const Work = ({ projects, meta }) => (
                         type={project.node.project_type}
                         timeframe={project.node.project_timeframe}
                     />
+                    </ScrollAnimation>
                 ))}
             </>
             <WorkAfter>

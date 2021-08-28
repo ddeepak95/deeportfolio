@@ -3,6 +3,7 @@ import { Link } from "gatsby";
 import styled from "@emotion/styled";
 import colors from "styles/colors";
 import Logo from "components/_ui/Logo";
+import Icon from "../images/icon.png"
 import typefaces from '../styles/typefaces';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -81,7 +82,7 @@ const Footer = () => (
         </FooterIcons>
         <FooterAuthor href="#">
             © 2021 — Deepak Varuvel Dennison
-            {/* <FooterSpooch className="FooterSpooch" src={spooch} /> */}
+            <FooterSpooch className="FooterSpooch" src={Icon} />
         </FooterAuthor>
     </FooterContainer>
 )

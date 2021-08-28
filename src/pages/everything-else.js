@@ -50,7 +50,7 @@ p {
     color: ${colors.grey800};
 }
 
-div {
+.info-unit{
     margin-bottom: 10px;
 }
 

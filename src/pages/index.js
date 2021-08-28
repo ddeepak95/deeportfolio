@@ -9,14 +9,27 @@ import Layout from "components/Layout";
 import ProjectCard from "components/ProjectCard";
 import HeroText from "../components/_ui/HeroText";
 import Button from "../components/_ui/Button"
-
+import "animate.css/animate.min.css";
+import ScrollAnimation from 'react-animate-on-scroll';
+import deeps from "images/deep.png"
 
 const Hero = styled("div")`
     padding-top: 2.5em;
     padding-bottom: 3em;
     margin-bottom: 4em;
-    max-width: 830px;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    grid-template-columns: repeat( auto-fit, minmax(230px, max-content));
+    
+    @media(max-width:950px) {
+        grid-template-columns: 1fr;
+    }
 
+    @media(max-width:${dimensions.maxwidthTablet}px) {
+        grid-template-columns: 1fr;
+    }
+    
     @media(max-width:${dimensions.maxwidthMobile}px) {
        margin-bottom: 3em;
     }
@@ -28,6 +41,7 @@ const Hero = styled("div")`
         span {
             text-decoration: none;
             transition: all 100ms ease-in-out;
+            display: inline-block;
 
             &:nth-of-type(1) { color: ${colors.blue500}; }
             &:nth-of-type(2) { color: ${colors.orange500}; }
@@ -50,6 +64,27 @@ const Hero = styled("div")`
     }
 `
 
+const HeroContent = styled("div")`
+@media(max-width:${dimensions.maxwidthTablet}px) {
+    grid-row: 2;
+}
+@media(max-width:950px) {
+    grid-row: 2;
+}
+width: auto;
+`
+
+const HeroImage = styled("div")`
+
+max-width: 300px;
+`
+
+const Deeps = styled("img")`
+width: 100%;
+height: 100%;;
+
+`
+
 const Section = styled("div")`
     margin-bottom: 4em;
     display: flex;
@@ -65,6 +100,7 @@ const Section = styled("div")`
 `
 
 const WorkAction = styled(Link)`
+display: block;
 text-align: center;
 margin-bottom: 10px;
 `
@@ -115,9 +151,14 @@ const RenderBody = ({ projects, meta }) => (
             ].concat(meta)}
         />
         <Hero>
+            <HeroContent>
             <h1>
-                I'm <HeroText tooltipId="hero" tooltipText="Actually my fullname is <strong>Deepak Varuvel Dennison</strong>. Kinda long yet cool, right?😁">Deepak</HeroText>, a simple person who loves to <HeroText tooltipId="hero" tooltipText="I like to read as well as learn by doing. Infact, this website itself is a result of the attempt to learn React. 🎓"> learn</HeroText> and <HeroText tooltipId="hero" tooltipText="🛠️I love to build stuff. This website is mostly about that.">build things</HeroText> esp. in the social impact space. I get very excited about all things education, design, and technology.
+                I'm <HeroText tooltipId="hero" tooltipText="Actually my fullname is <strong>Deepak Varuvel Dennison</strong>. Kinda long yet cool, right?😁"><ScrollAnimation initiallyVisible={true} delay={3500} animateIn='animate__pulse'>Deepak</ScrollAnimation></HeroText>, a simple person who loves to <HeroText tooltipId="hero" tooltipText="I like to read as well as learn by doing. Infact, this website itself is a result of the attempt to learn React. 🎓"><ScrollAnimation initiallyVisible={true} delay={3500} animateIn='animate__pulse'> learn</ScrollAnimation></HeroText> and <HeroText tooltipId="hero" tooltipText="🛠️I love to build stuff. This website is mostly about that."><ScrollAnimation initiallyVisible={true} delay={3500} animateIn='animate__pulse'>build things</ScrollAnimation></HeroText> esp. in the social impact space. I get very excited about all things education, design, and technology.
             </h1>
+            </HeroContent>
+            <HeroImage>
+            <Deeps src={deeps}></Deeps>
+            </HeroImage>
         </Hero>
         <Section>
             <WorkHeading>Check out my works below :)</WorkHeading>
@@ -138,14 +179,8 @@ const RenderBody = ({ projects, meta }) => (
             </WorkAction>
             <WorkAction to={"/everything-else"}>
                 <Button>See everything else</Button>
-            </WorkAction>
+            </WorkAction>  
         </Section>
-        {/* <Section>
-            <About
-                bio={home.about_bio}
-                socialLinks={home.about_links}
-            />
-        </Section> */}
     </>
 );
 

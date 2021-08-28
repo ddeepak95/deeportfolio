@@ -4,6 +4,8 @@ import styled from "@emotion/styled";
 import colors from "styles/colors";
 import dimensions from "styles/dimensions";
 import Logo from "components/_ui/Logo";
+import { slide as Menu } from 'react-burger-menu'
+
 
 const HeaderContainer = styled("div")`
     padding-top: 3.75em;
@@ -24,11 +26,12 @@ const HeaderLinks = styled("div")`
     max-width: 300px;
 
     @media(max-width: ${dimensions.maxwidthTablet}px) {
-        grid-gap: 5.5em;
+        grid-gap: 2.5em;
+
     }
 
     @media(max-width: ${dimensions.maxwidthMobile}px) {
-        grid-gap: 2.5em;
+        display: none;
     }
 
     a {
@@ -72,6 +75,75 @@ const HeaderLinks = styled("div")`
     }
 `
 
+const SideMenu =  styled.div`
+    position: absolute;
+    top: 0px;
+    right: 60px;
+    display: none;
+    /* Individual item */
+    .bm-item {
+      display: inline-block;
+      /* Our sidebar item styling */
+      text-decoration: none;
+      margin-bottom: 40px;
+      color: #000;
+      transition: color 0.2s;
+    }
+    /* Change color on hover */
+    .bm-item:hover {
+      color: ${colors.blue500};
+    }
+    /* The rest copied directly from react-burger-menu docs */
+    /* Position and sizing of burger button */
+    .bm-burger-button {
+      position: absolute;
+      top: 50px;
+      width: 32px;
+      height: 28px;
+
+        
+    }
+    /* Color/shape of burger icon bars */
+    .bm-burger-bars {
+      background: ${colors.blue900};
+    }
+    /* Position and sizing of clickable cross button */
+    .bm-cross-button {
+      height: 24px;
+      width: 24px;
+      transform: scale(3) translate(-20px, 15px);
+      right: 40px;
+    }
+    /* Color/shape of close button cross */
+    .bm-cross {
+      background: #bdc3c7;
+    }
+    /* General sidebar styles */
+    .bm-menu {
+      background: white;
+      padding: 3.5em 1.5em;
+      font-size: 3em;
+      font-weight: 600;
+      width: 100%
+    }
+    /* Morph shape necessary with bubble or elastic */
+    .bm-morph-shape {
+      fill: #373a47;
+    }
+    /* Wrapper for item list */
+    .bm-item-list {
+      color: black;
+      text-align: right;
+    }
+    /* Styling of overlay */
+    .bm-overlay {
+      background: rgba(0, 0, 0, 0.3);
+    }
+    @media(max-width: ${dimensions.maxwidthMobile}px) {
+        display: block;
+    }
+`
+
 const Header = () => (
     <HeaderContainer>
         <HeaderContent>
@@ -90,7 +162,26 @@ const Header = () => (
                     Everything else
                 </Link>
             </HeaderLinks>
+
+            <SideMenu>
+              <Menu width={ '100%' } right>
+                <Link className="menu-item" to="/" >
+                  Home
+                </Link>
+                <Link
+                    to="/work">
+                    Work
+                </Link>
+                <Link
+                    to="/everything-else">
+                    Everything else
+                </Link>
+              </Menu>
+            </SideMenu>
+
+
         </HeaderContent>
+
     </HeaderContainer>
 )
 
