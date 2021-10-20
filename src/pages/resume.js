@@ -13,6 +13,7 @@ import Publications from "../components/Publications"
 import Volunteering from "../components/Volunteering"
 import GetInTouch from "../components/GetInTouch"
 import og_img from "images/og-img.jpg"
+import dimensions from "styles/dimensions"
 
 const ResumeHead = styled("div")`
   margin-bottom: 3em;
@@ -56,6 +57,12 @@ const ResumeContainer = styled("section")`
 
   .float-right {
     float: right;
+    font-weight: 300;
+    display: inline-block;
+    @media (max-width: ${dimensions.maxwidthMobile}px) {
+      display: block;
+      float: none;
+    }
   }
 
   .read-more-btn {
@@ -249,6 +256,7 @@ export const query = graphql`
               description
               orgName
               title
+              timeframe
               link {
                 _linkType
                 ... on PRISMIC__ExternalLink {

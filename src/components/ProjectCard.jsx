@@ -90,19 +90,16 @@ const ProjectCardCategory = styled("p")`
   color: ${colors.grey700};
   margin: 0px 0px -2px 0px;
 `
-const ProjectCardType = styled("p")`
-  margin: 0px 0px 4px 0px;
-  float: right;
-  display: inline-block;
-  padding: 3px 10px;
-  border-radius: 4px;
-  font-size: 0.8em;
-  font-weight: 600;
-  color: ${colors.blue400};
-  // letter-spacing: 2.5px;
-  // text-transform: uppercase;
-  background-color: ${colors.blue200};
-`
+// const ProjectCardType = styled("p")`
+//   margin: 0px 0px 4px 0px;
+//   display: inline-block;
+//   padding: 1px 10px;
+//   border-radius: 4px;
+//   font-size: 0.8em;
+//   font-weight: 600;
+//   color: ${colors.blue400};
+//   background-color: ${colors.blue200};
+// `
 
 const ProjectCardTitle = styled("h3")`
   margin-bottom: 1.2em;
@@ -197,11 +194,11 @@ const ProjectCard = ({
   >
     <ProjectCardContainer to={`/work/${uid}`}>
       <ProjectCardContent className="ProjectCardContent">
+        {/* <ProjectCardType>{type[0].text}</ProjectCardType> */}
         <ProjectCardCategory>{category[0].text}</ProjectCardCategory>
         <ProjectCardTitle>{title[0].text}</ProjectCardTitle>
         <ProjectCardBlurb>{RichText.render(description)}</ProjectCardBlurb>
         <ProjectCardAction className="ProjectCardAction">
-          <ProjectCardType>{type[0].text}</ProjectCardType>
           Details <span>&#8594;</span>
         </ProjectCardAction>
       </ProjectCardContent>

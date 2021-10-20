@@ -9,11 +9,18 @@ import Button from "../components/_ui/Button"
 import og_img from "images/og-img.jpg"
 import colors from "../styles/colors"
 
-const WorkTitle = styled("h1")`
-  margin-bottom: 1em;
-`
 const WorkAfter = styled("div")`
   text-align: center;
+`
+
+const WorkHead = styled("div")`
+  margin-bottom: 3em;
+  h1 {
+    margin-bottom: 5px;
+  }
+  p {
+    margin-top: 0px;
+  }
 `
 
 const WorkAction = styled(Link)`
@@ -69,7 +76,17 @@ const Work = ({ projects, meta }) => (
       ].concat(meta)}
     />
     <Layout>
-      <WorkTitle>Work</WorkTitle>
+      <WorkHead>
+        <h1>Work</h1>
+        <p>
+          Yay! Super glad that you’re interested in checking out my work. See
+          some of the notable ones below
+          <span role="img" aria-label="down-emoji">
+            ⏬
+          </span>
+          !
+        </p>
+      </WorkHead>
       <>
         {projects.map((project, i) => (
           <ProjectCard

@@ -5,6 +5,7 @@ import colors from "styles/colors"
 import Logo from "components/_ui/Logo"
 import Icon from "../images/icon.png"
 import GIF from "../images/icon.gif"
+import HeroText from "./_ui/HeroText"
 import typefaces from "../styles/typefaces"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { library } from "@fortawesome/fontawesome-svg-core"
@@ -53,10 +54,13 @@ const FooterIcons = styled("div")`
   }
 `
 
-const FooterAuthor = styled("p")`
+const FooterText = styled("div")`
+  max-width: 500px;
   font-size: 0.9em;
-  color: ${colors.grey500};
+  color: ${colors.grey700};
+  text-align: center;
   display: flex;
+  cursor: default;
   flex-direction: column;
   align-items: center;
   text-decoration: none;
@@ -67,11 +71,31 @@ const FooterAuthor = styled("p")`
       transform: scale(1.4);
     }
   }
+
+  p {
+    margin: 0px;
+    font-weight: 500;
+  }
+  strong {
+    font-weight: 400;
+  }
+  .name {
+    display: inline-block;
+  }
 `
 
 const FooterSpooch = styled("img")`
   max-width: 48px;
   margin-top: 0.25em;
+`
+const FooterCredits = styled("span")`
+  margin: 0px;
+  padding: 0px 4px;
+  cursor: help;
+  color: ${colors.purple600};
+  &:hover {
+    background-color: ${colors.purple200};
+  }
 `
 
 const Footer = () => {
@@ -130,13 +154,21 @@ const Footer = () => {
           />
         </a>
       </FooterIcons>
-      <FooterAuthor
-        onMouseOver={hoverFooterIcon}
-        onMouseOut={defaultFooterIcon}
-      >
-        © 2021 — Deepak Varuvel Dennison
+      <FooterText onMouseOver={hoverFooterIcon} onMouseOut={defaultFooterIcon}>
+        <p>
+          © 2021 — Designed & Developed by{" "}
+          <span className="name">Deepak Varuvel Dennison</span>{" "}
+        </p>
+        <FooterCredits>
+          <HeroText
+            tooltipId="credits"
+            tooltipText="Thanks to <strong>Marguerite Roth</strong> for the awesome starter template!<br>Thanks to <strong>Pavithra Murugan</strong> and <strong>Medhavi Hassija</strong> for their stellar suggestions!"
+          >
+            with help from few amazing folks!
+          </HeroText>
+        </FooterCredits>
         <FooterSpooch className="FooterSpooch" src={footerIcon} />
-      </FooterAuthor>
+      </FooterText>
     </FooterContainer>
   )
 }

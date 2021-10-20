@@ -296,9 +296,10 @@ const Project = ({ project, nextProject, meta }) => {
               {RichText.asText(project.project_title)}
             </ProjectTitle>
             <ProjectMeta>
-              <p>{RichText.asText(project.project_designation)}</p>{" "}
+              <p>{RichText.asText(project.project_designation)}</p>
+              {/* {" "}
               <span>&#9679;</span>{" "}
-              <p>{RichText.asText(project.project_type)}</p>{" "}
+              <p>{RichText.asText(project.project_type)}</p>{" "} */}
               <span>&#9679;</span>{" "}
               <p>{RichText.asText(project.project_timeframe)}</p>{" "}
             </ProjectMeta>

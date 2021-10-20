@@ -224,7 +224,7 @@ function RenderBody({ projects, meta }) {
             I'm{" "}
             <HeroText
               tooltipId="hero"
-              tooltipText="Actually my fullname is <strong>Deepak Varuvel Dennison</strong>. Kinda long yet cool, right?😁"
+              tooltipText="Actually my full name is <strong>Deepak Varuvel Dennison</strong>. Kinda long yet cool, right?😁"
             >
               <ScrollAnimation
                 initiallyVisible={true}
@@ -237,7 +237,7 @@ function RenderBody({ projects, meta }) {
             , a simple person who loves to{" "}
             <HeroText
               tooltipId="hero"
-              tooltipText="I like to read as well as learn by doing. Infact, this website itself is a result of the attempt to learn React. 🎓"
+              tooltipText="I like to read as well as learn by doing. In fact, this website is a result of the attempt to learn React.js🎓."
             >
               <ScrollAnimation
                 initiallyVisible={true}
@@ -251,7 +251,7 @@ function RenderBody({ projects, meta }) {
             and{" "}
             <HeroText
               tooltipId="hero"
-              tooltipText="🛠️I love to build stuff. This website is mostly about that."
+              tooltipText="🛠️I love to build stuff. You can find few notable things I’ve built in this website."
             >
               <ScrollAnimation
                 initiallyVisible={true}
@@ -261,7 +261,7 @@ function RenderBody({ projects, meta }) {
                 build things
               </ScrollAnimation>
             </HeroText>{" "}
-            esp. in the social impact space. I get very excited about all things
+            in the social impact space. I get very excited about all things
             education, design, and technology.
           </h1>
         </HeroContent>
@@ -274,7 +274,7 @@ function RenderBody({ projects, meta }) {
         </HeroImage>
       </Hero>
       <Section>
-        <WorkHeading>Check out my works below :)</WorkHeading>
+        <WorkHeading>Check out my work below :)</WorkHeading>
         {projects.map((project, i) => (
           <ProjectCard
             key={i}

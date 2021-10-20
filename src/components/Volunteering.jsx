@@ -27,7 +27,10 @@ const Volunteering = ({ volunteering }) => (
             </a>
           )}
           {experience.link == null && <h4>{experience.title[0].text}</h4>}
-          <h5>{experience.orgName[0].text}</h5>
+          <h5>
+            {experience.orgName[0].text}{" "}
+            <span className="float-right"> {experience.timeframe[0].text}</span>
+          </h5>
           <p>{experience.description[0].text}</p>
         </ScrollAnimation>
       </div>
