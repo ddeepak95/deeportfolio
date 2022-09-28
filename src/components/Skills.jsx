@@ -65,7 +65,7 @@ const Skills = ({ skills }) => (
                   offset={250}
                   initiallyVisible={true}
                   delay={(a += 20)}
-                  animateIn="animate__pulse"
+                  animateIn="animate__headShake"
                 >
                   {skill.name[0].text}
                 </ScrollAnimation>

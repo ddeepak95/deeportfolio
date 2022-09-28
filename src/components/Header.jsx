@@ -7,22 +7,63 @@ import Logo from "components/_ui/Logo"
 import { slide as Menu } from "react-burger-menu"
 
 const HeaderContainer = styled("div")`
-  padding-top: 3.75em;
-  padding-bottom: 3em;
+  // padding-top: 3.75em;
+  // padding-bottom: 3em;
+  display: unset;
+`
+const HeaderSpacer = styled("div")`
+  height: 35px;
+  display: block;
+`
+const HeaderSpacerBottom = styled("div")`
+  height: 35px;
+  display: block;
+  @media (max-width: ${dimensions.maxwidthTablet}px) {
+    display: none;
+  }
+
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    display: none;
+  }
 `
 
 const HeaderContent = styled("div")`
+  position: sticky;
+  top: 0;
+  padding-top: 20px;
+  padding-bottom: 15px;
+  border-radius: 0px 0px 25px 25px;
+  background: white;
   display: flex;
+  z-index: 10;
   justify-content: space-between;
+  width: 100%;
+  max-width: 1100px;
+  padding-left: 4em;
+  padding-right: 4em;
+  margin: 0 auto;
+  padding-left: ${dimensions.paddingHorizontalDesktop}em;
+  padding-right: ${dimensions.paddingHorizontalDesktop}em;
+
+  @media (max-width: ${dimensions.maxwidthTablet}px) {
+    padding-left: ${dimensions.paddingHorizontalTablet}em;
+    padding-right: ${dimensions.paddingHorizontalTablet}em;
+  }
+
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    padding-top: 25px;
+    padding-left: ${dimensions.paddingHorizontalMobile}em;
+    padding-right: ${dimensions.paddingHorizontalMobile}em;
+  }
 `
 
 const HeaderLinks = styled("div")`
   display: grid;
-  grid-template-columns: repeat(2, auto);
+  grid-template-columns: repeat(3, auto);
   grid-gap: 3em;
   justify-content: flex-end;
   width: 100%;
-  max-width: 300px;
+  max-width: 600px;
 
   @media (max-width: ${dimensions.maxwidthTablet}px) {
     grid-gap: 2.5em;
@@ -39,8 +80,8 @@ const HeaderLinks = styled("div")`
     font-weight: 600;
     font-size: 0.95em;
     height: 100%;
-    padding-bottom: 1.25em;
-    padding-top: 0.25em;
+    // padding-bottom: 1.25em;
+    // padding-top: 0.25em;
     display: block;
     position: relative;
 
@@ -96,7 +137,7 @@ const SideMenu = styled.div`
   .bm-burger-button {
     position: absolute;
     display: block;
-    top: 50px;
+    top: 12px;
     padding: 20px;
     width: 40px;
     height: 36px;
@@ -128,10 +169,14 @@ const SideMenu = styled.div`
     background: #bdc3c7;
   }
   /* General sidebar styles */
+  .bm-menu-wrap{
+    top: 0px;
+  }
+
   .bm-menu {
     background: white;
-    padding: 3.5em 1.5em;
-    font-size: 2.2em;
+    padding: 120px 50px 0px 0px;
+    font-size: 2.0em;
     font-weight: 600;
     width: 100%;
   }
@@ -155,6 +200,7 @@ const SideMenu = styled.div`
 
 const Header = () => (
   <HeaderContainer>
+    <HeaderSpacer />
     <HeaderContent>
       <Link to="/">
         <Logo />
@@ -162,6 +208,9 @@ const Header = () => (
       <HeaderLinks>
         <Link activeClassName="Link--is-active" to="/work">
           Work
+        </Link>
+        <Link activeClassName="Link--is-active" to="/aroundtheweb">
+          Around The Web
         </Link>
         <Link activeClassName="Link--is-active" to="/resume">
           Resume
@@ -174,10 +223,12 @@ const Header = () => (
             Home
           </Link>
           <Link to="/work">Work</Link>
+          <Link to="/aroundtheweb">Around The Web</Link>
           <Link to="/resume">Resume</Link>
         </Menu>
       </SideMenu>
     </HeaderContent>
+    <HeaderSpacerBottom />
   </HeaderContainer>
 )
 

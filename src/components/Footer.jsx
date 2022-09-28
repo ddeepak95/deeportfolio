@@ -113,7 +113,7 @@ const Footer = () => {
       </Link>
       <FooterIcons>
         <a
-          href="mailto:ddeepak95@gmail.com"
+          href="mailto:deepakvd@stanford.edu"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -156,7 +156,8 @@ const Footer = () => {
       </FooterIcons>
       <FooterText onMouseOver={hoverFooterIcon} onMouseOut={defaultFooterIcon}>
         <p>
-          © 2021 — Designed & Developed by{" "}
+        Thank you for making the time to drop by. I really appreciate it <span role="img" aria-label="heart-emoji">❤️</span>
+        <br/><br/>© 2022 — Designed & Developed by{" "}
           <span className="name">Deepak Varuvel Dennison</span>{" "}
         </p>
         <FooterCredits>

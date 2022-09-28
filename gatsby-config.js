@@ -6,7 +6,7 @@ module.exports = {
   siteMetadata: {
     title: `Deepak Varuvel Dennison`,
     description: `A glimpse into Deepak's initiatives and engagements!`,
-    author: `Deepak Varuvel Dennison | ddeepak95@gmail.com`,
+    author: `Deepak Varuvel Dennison | deepakvd@stanford.edu`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -45,6 +45,7 @@ module.exports = {
         display: `minimal-ui`,
         icon: `src/images/icon.png`, // This path is relative to the root of the site.
       },
+      
     },
     // https://www.gatsbyjs.org/packages/gatsby-plugin-google-analytics/
     {

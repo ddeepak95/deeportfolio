@@ -8,12 +8,15 @@ import colors from "styles/colors"
 import typefaces from "styles/typefaces"
 import Layout from "components/Layout"
 import Awards from "../components/Awards"
-import Skills from "../components/Skills"
 import Publications from "../components/Publications"
 import Volunteering from "../components/Volunteering"
+import Certifications from "../components/Certifications"
+import Experiences from "../components/Experiences"
 import GetInTouch from "../components/GetInTouch"
 import og_img from "images/og-img.jpg"
 import dimensions from "styles/dimensions"
+import Ventures from "../components/Ventures"
+import ColoredTags from "../components/ColoredTags"
 
 const ResumeHead = styled("div")`
   margin-bottom: 3em;
@@ -45,7 +48,7 @@ const ResumeContainer = styled("section")`
   }
 
   p {
-    margin: 5px 0px 20px 0px;
+    margin: 5px 0px 15px 0px;
     font-size: 0.85em;
     line-height: 1.5;
     color: ${colors.grey800};
@@ -90,41 +93,41 @@ const ResumeContainer = styled("section")`
     }
   }
 
-  .skill-list {
-    text-align: left;
-    padding: 0px 0px 0px 15px;
-  }
+  // .skill-list {
+  //   text-align: left;
+  //   padding: 0px 0px 0px 15px;
+  // }
 
-  .skill-list li {
-    padding-bottom: 5px;
-  }
+  // .skill-list li {
+  //   padding-bottom: 5px;
+  // }
 
-  .skill-tooltip {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    width: 100%;
-  }
+  // .skill-tooltip {
+  //   display: flex;
+  //   flex-direction: row;
+  //   flex-wrap: nowrap;
+  //   width: 100%;
+  // }
 
-  .skill-tooltip span {
-    // display: flex;
-    // flex-direction: column;
-    // flex: 1;
-    text-align: left;
-    padding: 0px 10px 0px 0px;
-  }
+  // .skill-tooltip span {
+  //   // display: flex;
+  //   // flex-direction: column;
+  //   // flex: 1;
+  //   text-align: left;
+  //   padding: 0px 10px 0px 0px;
+  // }
 
-  .skill-tooltip .rating p {
-    display: inline-block;
-    margin: 0px;
-    font-size: inherit;
-    color: ${colors.grey500};
-  }
+  // .skill-tooltip .rating p {
+  //   display: inline-block;
+  //   margin: 0px;
+  //   font-size: inherit;
+  //   color: ${colors.grey500};
+  // }
 
-  .skill-tooltip span:first-of-type {
-    flex-shrink: 0;
-    flex: 2;
-  }
+  // .skill-tooltip span:first-of-type {
+  //   flex-shrink: 0;
+  //   flex: 2;
+  // }
 `
 
 const Resume = ({ resume, meta }) => (
@@ -175,14 +178,20 @@ const Resume = ({ resume, meta }) => (
       <ResumeHead>
         <h1>Resume</h1>
         <p>
-          A quick snapshot of my education, recognitions, skills, etc, etc... :)
+          A quick snapshot of my experiences, education, recognitions, skills, etc, etc... :)
         </p>
       </ResumeHead>
       <ResumeContainer>
+        <Experiences experiences={resume.experiences}></Experiences>
+        <Ventures ventures={resume.ventures}></Ventures>
         <Education courses={resume.education}></Education>
-        <Awards awards={resume.awards}></Awards>
-        <Skills skills={resume.skills}></Skills>
+        <Awards awards={resume.awards} numberOfItemsToShow = {3}></Awards>
+        <h3>Skills</h3>
+        <ColoredTags tags={resume.skills}></ColoredTags>
+        <h3>Tools</h3>
+        <ColoredTags tags={resume.tools}></ColoredTags>
         <Publications publications={resume.publications}></Publications>
+        <Certifications certifications={resume.certifications}></Certifications>
         <Volunteering volunteering={resume.volunteering}></Volunteering>
         <GetInTouch />
       </ResumeContainer>
@@ -229,6 +238,48 @@ export const query = graphql`
                 }
               }
             }
+            certifications {
+              description
+              institution
+              year
+              name
+              link {
+                _linkType
+                ... on PRISMIC__ExternalLink {
+                  target
+                  _linkType
+                  url
+                }
+              }
+            }
+            experiences {
+              description
+              institution
+              year
+              name
+              link {
+                _linkType
+                ... on PRISMIC__ExternalLink {
+                  target
+                  _linkType
+                  url
+                }
+              }
+            }
+            ventures {
+              description
+              institution
+              year
+              name
+              link {
+                _linkType
+                ... on PRISMIC__ExternalLink {
+                  target
+                  _linkType
+                  url
+                }
+              }
+            }              
             education {
               courseName
               institutionName
@@ -248,7 +299,10 @@ export const query = graphql`
               }
             }
             skills {
-              description
+              name
+              color
+            }
+            tools {
               name
               color
             }

@@ -38,6 +38,7 @@ const globalStyles = css`
     a{
         color: ${colors.blue600};
         text-decoration: none;
+        font-weight: 500;
     }
 
 

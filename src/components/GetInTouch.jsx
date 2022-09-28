@@ -6,11 +6,11 @@ const GetInTouch = () => (
     <h4>
       Feel free to reach me at{" "}
       <a
-        href="mailto:ddeepak95@gmail.com"
+        href="mailto:deepakvd@stanford.edu"
         target="_blank"
         rel="noopener noreferrer"
       >
-        ddeepak95@gmail.com
+        deepakvd@stanford.edu
       </a>
     </h4>
   </section>

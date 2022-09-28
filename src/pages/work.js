@@ -1,17 +1,18 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
+// import { Link } from "gatsby"
 import styled from "@emotion/styled"
 import Layout from "components/Layout"
 import ProjectCard from "components/ProjectCard"
-import Button from "../components/_ui/Button"
+// import Button from "../components/_ui/Button"
 import og_img from "images/og-img.jpg"
 import colors from "../styles/colors"
 
-const WorkAfter = styled("div")`
-  text-align: center;
-`
+// const WorkAfter = styled("div")`
+//   text-align: center;
+// `
 
 const WorkHead = styled("div")`
   margin-bottom: 3em;
@@ -23,9 +24,9 @@ const WorkHead = styled("div")`
   }
 `
 
-const WorkAction = styled(Link)`
-  margin-bottom: 10px;
-`
+// const WorkAction = styled(Link)`
+//   margin-bottom: 10px;
+// `
 
 const Work = ({ projects, meta }) => (
   <>
@@ -101,11 +102,11 @@ const Work = ({ projects, meta }) => (
           />
         ))}
       </>
-      <WorkAfter>
+      {/* <WorkAfter>
         <WorkAction to={"/resume"}>
           <Button>See other things in the resume</Button>
         </WorkAction>
-      </WorkAfter>
+      </WorkAfter> */}
     </Layout>
   </>
 )

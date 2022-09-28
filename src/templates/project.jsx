@@ -12,6 +12,7 @@ import { Fragment } from "react"
 import parseUrl from "parse-url"
 import dimensions from "styles/dimensions"
 import ScrollAnimation from "react-animate-on-scroll"
+import ColoredTags from "../components/ColoredTags"
 
 const ProjectHeroContainer = styled("div")`
   background: ${colors.grey200};
@@ -55,6 +56,10 @@ const ProjectBody = styled("div")`
   h4 {
     font-size: 1.2em;
     margin: 40px 0px 0px 0px;
+  }
+
+  .sub-heading{
+    margin: 20px 0px 10px 0px;
   }
 
   strong {
@@ -109,17 +114,39 @@ const ProjectBody = styled("div")`
   }
 `
 
+const ProjectNavigation = styled("div")`
+  display: inline-flex;
+  flex-direction: row;
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    flex-direction: column-reverse;
+  }
+  @media (max-width: ${dimensions.maxwidthTablet}px) {
+    flex-direction: column-reverse;
+  }
+`
+
 const WorkLink = styled(Link)`
   margin-top: 3em;
-  display: inline-block;
   text-align: center;
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    margin-top: 2em;
+  }
   p {
+    font-weight: 400;
     text-align: center;
-    margin: 5px 15px 0px 15px;
-    line-height: 1;
+    margin: 0px 15px 0px 15px;
+    line-height: 1.6;
     font-size: 0.9em;
     @media (max-width: ${dimensions.maxwidthMobile}px) {
-      margin: 5px 15px 0px 15px;
+      margin: 0px 15px 0px 15px;
+    }
+  }
+
+  Button
+  {
+    margin: 0px 30px;
+    @media (max-width: ${dimensions.maxwidthMobile}px) {
+      margin: 0px;
     }
   }
 `
@@ -238,7 +265,7 @@ const LearningsContainer = styled("div")`
   }
 `
 
-const Project = ({ project, nextProject, meta }) => {
+const Project = ({ project, nextProject, prevProject, meta }) => {
   return (
     <>
       <Helmet
@@ -304,6 +331,8 @@ const Project = ({ project, nextProject, meta }) => {
               <p>{RichText.asText(project.project_timeframe)}</p>{" "}
             </ProjectMeta>
             <ProjectLink>
+
+            {project.project_website &&
               <a
                 href={project.project_website.url}
                 target="_blank"
@@ -314,6 +343,8 @@ const Project = ({ project, nextProject, meta }) => {
                 </span>
                 {parseUrl(project.project_website.url).resource}
               </a>
+            }
+
             </ProjectLink>
           </ProjectHeroText>
           {project.project_hero_image && (
@@ -322,7 +353,23 @@ const Project = ({ project, nextProject, meta }) => {
             </ProjectHeroContainer>
           )}
           <ProjectBody>
-            {RichText.render(project.project_description)}
+          {RichText.render(project.project_description)}
+            {project.project_skills &&
+            <div>
+                <h4 className="sub-heading">
+                Skills{" "}<span role="img" aria-label="skilled-juggler">🤹🏾</span>
+              </h4>
+            <ColoredTags tags={project.project_skills}></ColoredTags>
+            </div>
+            }
+            {project.project_tools &&
+            <div>
+                <h4 className="sub-heading">
+                Tools{" "}<span role="img" aria-label="colour-palette">🎨</span>
+              </h4>
+            <ColoredTags tags={project.project_tools}></ColoredTags>
+            </div>
+            }
             {project.project_responsibilities && (
               <ResponsibilitiesContainer>
                 <h4>
@@ -359,12 +406,22 @@ const Project = ({ project, nextProject, meta }) => {
             {project.additional_comment && (
               <Fragment>{RichText.render(project.additional_comment)}</Fragment>
             )}
-            <WorkLink to={`/work/${nextProject._meta.uid}`}>
-              <Button className="Button--secondary">
-                See Next Work
-                <p>{RichText.asText(nextProject.project_title)}</p>
-              </Button>
-            </WorkLink>
+            <ProjectNavigation>
+              { prevProject && 
+                <WorkLink to={`/work/${prevProject._meta.uid}`}>
+                  <Button className="Button--secondary">
+                    <p>See Previous Work</p>
+                    {RichText.asText(prevProject.project_title)}
+                  </Button>
+                </WorkLink>
+              }
+              <WorkLink to={`/work/${nextProject._meta.uid}`}>
+                <Button className="Button--secondary">
+                  <p>See Next Work</p>
+                  {RichText.asText(nextProject.project_title)}
+                </Button>
+              </WorkLink>
+            </ProjectNavigation>
           </ProjectBody>
         </ScrollAnimation>
       </Layout>
@@ -376,17 +433,23 @@ export default ({ data }) => {
   const project = data.project.allProjects.edges[0]
   const projectContent = project.node
   const projectId = projectContent._meta.uid
-  const nextProjectContents = data.nextProject.allProjects.edges
-  const projectIndex = nextProjectContents.findIndex(
+  const projectContents = data.projectsList.allProjects.edges
+  const projectIndex = projectContents.findIndex(
     x => x.node._meta.uid === projectId
   )
-  const nextProjectIndex = (projectIndex + 1) % nextProjectContents.length
-  const nextProjectContent = nextProjectContents[nextProjectIndex].node
+  const nextProjectIndex = (projectIndex + 1) % projectContents.length
+  console.log("Next Project Index: " + nextProjectIndex)
+  const nextProjectContent = projectContents[nextProjectIndex].node
+  const prevProjectIndex = (projectIndex - 1) % projectContents.length
+  console.log("Previous Project Index: " + prevProjectIndex)
+  const prevProjectContent = prevProjectIndex < 0 ? null : projectContents[prevProjectIndex].node;
+  
   const meta = data.siteData.siteMetadata
   return (
     <Project
       project={projectContent}
       nextProject={nextProjectContent}
+      prevProject={prevProjectContent}
       meta={meta}
     />
   )
@@ -415,6 +478,14 @@ export const query = graphql`
             project_learnings
             project_timeframe
             project_type
+            project_skills {
+              name
+              color
+            }
+            project_tools {
+              name
+              color
+            }
             additional_comment
             project_website {
               _linkType
@@ -431,7 +502,7 @@ export const query = graphql`
         }
       }
     }
-    nextProject: prismic {
+    projectsList: prismic {
       allProjects(sortBy: project_post_date_DESC) {
         edges {
           cursor

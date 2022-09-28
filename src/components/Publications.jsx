@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "@emotion/styled"
-import ReactReadMoreReadLess from "react-read-more-read-less"
 import ScrollAnimation from "react-animate-on-scroll"
+import ShowMoreText from "react-show-more-text";
 
 const Publication = styled("section")``
 
@@ -29,13 +29,10 @@ const Publications = ({ publications }) => (
           </a>
           <h5>{publication.publication_name[0].text}</h5>
           <p>
-            <ReactReadMoreReadLess
-              readMoreText="Expand"
-              readMoreClassName="read-more-btn"
-              readLessText=""
+            <ShowMoreText
             >
               {publication.description[0].text}
-            </ReactReadMoreReadLess>
+            </ShowMoreText>
           </p>
           {/* <p>{publication.description[0].text}</p> */}
         </ScrollAnimation>
