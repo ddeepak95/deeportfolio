@@ -1,28 +1,29 @@
 import styled from "@emotion/styled"
 import { css } from "@emotion/core"
 import React from "react"
-import HeroText from "./_ui/HeroText"
 import colors from "../styles/colors"
 import typefaces from "../styles/typefaces"
 import { Fragment } from "react"
-import { RichText } from "prismic-reactjs"
 import ScrollAnimation from "react-animate-on-scroll"
 
-// const randomColorSelect = () => {
-//     const colorsArray = ["blue", "green", "orange"];
-//     var randomColor = colorsArray[Math.floor(Math.random()*colorsArray.length)];
-//     return randomColor;
-// };
-
-const SkillsContainer = styled("div")`
+const TagsContainer = styled("div")`
   display: flex;
   flex-wrap: wrap;
   overflow-scroll: hidden;
+  margin-bottom: 10px;
 `
 
-const Skill = styled("div")`
+const Subtitle = styled("h4")`
+  font-family: ${typefaces.sansSerif};
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: ${colors.grey600};
+`
+
+const Tag = styled("div")`
   margin: 0px 10px 10px 0px;
-  .tooltip-label {
+  .label {
     padding: 5px 15px;
     font-weight: 800;
     letter-spacing: 1.5px;
@@ -36,11 +37,8 @@ const Skill = styled("div")`
   }
 `
 
-var a = 200
-
-const Skills = ({ skills }) => (
-  <section id="skills-section">
-    <h3>Skills</h3>
+const Skills = () => (
+  <section id="tags-section">
     <ScrollAnimation
       duration={0.7}
       offset={20}
@@ -48,32 +46,109 @@ const Skills = ({ skills }) => (
       animateIn="animate__fadeIn"
       animateOnce={true}
     >
-      <SkillsContainer>
-        {skills.map((skill, i) => (
-          <Fragment key={i}>
-            <Skill
-              css={css`
-                background-color: ${colors[skill.color + "200"]};
-                color: ${colors[skill.color + "600"]};
-              `}
-            >
-              <HeroText
-                tooltipId="skills"
-                tooltipText={RichText.asText(skill.description)}
-              >
-                <ScrollAnimation
-                  offset={250}
-                  initiallyVisible={true}
-                  delay={(a += 20)}
-                  animateIn="animate__headShake"
-                >
-                  {skill.name[0].text}
-                </ScrollAnimation>
-              </HeroText>
-            </Skill>
-          </Fragment>
-        ))}
-      </SkillsContainer>
+      <Subtitle>Design</Subtitle>
+      <TagsContainer>
+        <Fragment>
+          <Tag
+            css={css`
+              background-color: ${colors.blue200};
+              color: ${colors.blue600};
+            `}
+          >
+            <span className="label">UI/UX Design</span>
+          </Tag>
+          <Tag
+            css={css`
+              background-color: ${colors.blue200};
+              color: ${colors.blue600};
+            `}
+          >
+            <span className="label">Needfinding</span>
+          </Tag>
+          <Tag
+            css={css`
+              background-color: ${colors.blue200};
+              color: ${colors.blue600};
+            `}
+          >
+            <span className="label">Learning Design</span>
+          </Tag>
+          <Tag
+            css={css`
+              background-color: ${colors.blue200};
+              color: ${colors.blue600};
+            `}
+          >
+            <span className="label">Graphic Design</span>
+          </Tag>
+        </Fragment>
+      </TagsContainer>
+      <Subtitle>Technical</Subtitle>
+      <TagsContainer>
+        <Fragment>
+          <Tag
+            css={css`
+              background-color: ${colors.purple200};
+              color: ${colors.purple600};
+            `}
+          >
+            <span className="label">Web Development</span>
+          </Tag>
+          <Tag
+            css={css`
+              background-color: ${colors.purple200};
+              color: ${colors.purple600};
+            `}
+          >
+            <span className="label">Low-code App Development</span>
+          </Tag>
+          <Tag
+            css={css`
+              background-color: ${colors.purple200};
+              color: ${colors.purple600};
+            `}
+          >
+            <span className="label">Workflow Automation</span>
+          </Tag>
+          <Tag
+            css={css`
+              background-color: ${colors.purple200};
+              color: ${colors.purple600};
+            `}
+          >
+            <span className="label">Video Editing</span>
+          </Tag>
+        </Fragment>
+      </TagsContainer>
+      <Subtitle>Leadership</Subtitle>
+      <TagsContainer>
+        <Fragment>
+          <Tag
+            css={css`
+              background-color: ${colors.green200};
+              color: ${colors.green600};
+            `}
+          >
+            <span className="label">Project Management</span>
+          </Tag>
+          <Tag
+            css={css`
+              background-color: ${colors.green200};
+              color: ${colors.green600};
+            `}
+          >
+            <span className="label">Facilitation</span>
+          </Tag>
+          <Tag
+            css={css`
+              background-color: ${colors.green200};
+              color: ${colors.green600};
+            `}
+          >
+            <span className="label">Collaboration</span>
+          </Tag>
+        </Fragment>
+      </TagsContainer>
     </ScrollAnimation>
   </section>
 )

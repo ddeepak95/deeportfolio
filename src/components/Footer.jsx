@@ -5,7 +5,6 @@ import colors from "styles/colors"
 import Logo from "components/_ui/Logo"
 import Icon from "../images/icon.png"
 import GIF from "../images/icon.gif"
-import HeroText from "./_ui/HeroText"
 import typefaces from "../styles/typefaces"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { library } from "@fortawesome/fontawesome-svg-core"
@@ -88,15 +87,6 @@ const FooterSpooch = styled("img")`
   max-width: 48px;
   margin-top: 0.25em;
 `
-const FooterCredits = styled("span")`
-  margin: 0px;
-  padding: 0px 4px;
-  cursor: help;
-  color: ${colors.purple600};
-  &:hover {
-    background-color: ${colors.purple200};
-  }
-`
 
 const Footer = () => {
   const [footerIcon, setFooterIcon] = useState(Icon)
@@ -156,18 +146,14 @@ const Footer = () => {
       </FooterIcons>
       <FooterText onMouseOver={hoverFooterIcon} onMouseOut={defaultFooterIcon}>
         <p>
-        Thank you for making the time to drop by. I really appreciate it <span role="img" aria-label="heart-emoji">❤️</span>
-        <br/><br/>© 2022 — Designed & Developed by{" "}
+          Thank you for making the time to drop by. I really appreciate it{" "}
+          <span role="img" aria-label="heart-emoji">
+            ❤️
+          </span>
+          <br />
+          <br />© 2022 — Designed & Coded by{" "}
           <span className="name">Deepak Varuvel Dennison</span>{" "}
         </p>
-        <FooterCredits>
-          <HeroText
-            tooltipId="credits"
-            tooltipText="Thanks to <strong>Marguerite Roth</strong> for the awesome starter template!<br>Thanks to <strong>Pavithra Murugan</strong> and <strong>Medhavi Hassija</strong> for their stellar suggestions!"
-          >
-            with help from few amazing folks!
-          </HeroText>
-        </FooterCredits>
         <FooterSpooch className="FooterSpooch" src={footerIcon} />
       </FooterText>
     </FooterContainer>

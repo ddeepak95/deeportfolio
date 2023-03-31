@@ -3,25 +3,20 @@ import ScrollAnimation from "react-animate-on-scroll"
 import styled from "@emotion/styled"
 
 const CertificationSection = styled("section")`
-
-div:first-of-type{
-    h4
-    {
-        margin-top: 0px;
+  div:first-of-type {
+    h4 {
+      margin-top: 0px;
     }
-}
+  }
 
-
-h4
-{
+  h4 {
     margin-top: 12px;
-}
-
+  }
 `
 
 const Certifications = ({ certifications }) => (
   <CertificationSection>
-    <h3>Certifications</h3>
+    <h2>Certifications</h2>
     {certifications.map((certificate, i) => (
       <Fragment key={i}>
         <ScrollAnimation
@@ -49,9 +44,7 @@ const Certifications = ({ certifications }) => (
             {certificate.institution[0].text}
             <span className="float-right"> {certificate.year[0].text}</span>
           </h5>
-          {certificate.description && (
-            <p>{certificate.description[0].text}</p>
-          )}
+          {certificate.description && <p>{certificate.description[0].text}</p>}
         </ScrollAnimation>
       </Fragment>
     ))}

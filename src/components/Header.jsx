@@ -59,14 +59,14 @@ const HeaderContent = styled("div")`
 
 const HeaderLinks = styled("div")`
   display: grid;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(4, auto);
   grid-gap: 3em;
   justify-content: flex-end;
   width: 100%;
   max-width: 600px;
 
   @media (max-width: ${dimensions.maxwidthTablet}px) {
-    grid-gap: 2.5em;
+    display: none;
   }
 
   @media (max-width: ${dimensions.maxwidthMobile}px) {
@@ -169,14 +169,14 @@ const SideMenu = styled.div`
     background: #bdc3c7;
   }
   /* General sidebar styles */
-  .bm-menu-wrap{
+  .bm-menu-wrap {
     top: 0px;
   }
 
   .bm-menu {
     background: white;
     padding: 120px 50px 0px 0px;
-    font-size: 2.0em;
+    font-size: 2em;
     font-weight: 600;
     width: 100%;
   }
@@ -196,6 +196,9 @@ const SideMenu = styled.div`
   @media (max-width: ${dimensions.maxwidthMobile}px) {
     display: block;
   }
+  @media (max-width: ${dimensions.maxwidthTablet}px) {
+    display: block;
+  }
 `
 
 const Header = () => (
@@ -206,14 +209,20 @@ const Header = () => (
         <Logo />
       </Link>
       <HeaderLinks>
-        <Link activeClassName="Link--is-active" to="/work">
-          Work
+        <Link activeClassName="Link--is-active" to="/">
+          Home
         </Link>
-        <Link activeClassName="Link--is-active" to="/aroundtheweb">
-          Around The Web
-        </Link>
+        {/* <Link activeClassName="Link--is-active" to="/casestudy">
+          Case Studies
+        </Link> */}
+        {/* <Link activeClassName="Link--is-active" to="/features">
+          Media Features
+        </Link> */}
         <Link activeClassName="Link--is-active" to="/resume">
           Resume
+        </Link>
+        <Link activeClassName="Link--is-active" to="/experiments">
+          Experiments
         </Link>
       </HeaderLinks>
 
@@ -222,9 +231,11 @@ const Header = () => (
           <Link className="menu-item" to="/">
             Home
           </Link>
-          <Link to="/work">Work</Link>
-          <Link to="/aroundtheweb">Around The Web</Link>
+          {/* <Link to="/work">Work</Link> */}
+          {/* <Link to="/casestudy">Case Studies</Link> */}
+          {/* <Link to="/features">Media Features</Link> */}
           <Link to="/resume">Resume</Link>
+          <Link to="/experiments">Experiments</Link>
         </Menu>
       </SideMenu>
     </HeaderContent>

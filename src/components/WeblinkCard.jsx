@@ -1,12 +1,11 @@
 import React from "react"
 import { Link } from "gatsby"
-import { RichText } from "prismic-reactjs"
 import styled from "@emotion/styled"
 import dimensions from "styles/dimensions"
 import colors from "styles/colors"
 import PropTypes from "prop-types"
 // import ScrollAnimation from "react-animate-on-scroll"
-import ShowMoreText from "react-show-more-text";
+import ShowMoreText from "react-show-more-text"
 import typefaces from "../styles/typefaces"
 
 const WeblinkCardContainer = styled(Link)`
@@ -88,9 +87,9 @@ const WeblinkCardContent = styled("div")`
 `
 
 const WeblinkTextContent = styled("div")`
-margin: 20px;
+  margin: 20px;
 
-  .weblinkTitle{
+  .weblinkTitle {
     font-weight: 600;
     // height: 50px;
     margin-top: 18px;
@@ -98,57 +97,30 @@ margin: 20px;
     font-size: 0.9em;
   }
 
-  .weblinkSiteName{
+  .weblinkSiteName {
     font-size: 14px;
     font-weight: 500;
     color: ${colors.grey700};
     margin-bottom: 20px;
   }
 
-  .weblinkDescription{
+  .weblinkDescription {
     font-family: ${typefaces.sansSerif};
     line-height: 22px;
     font-weight: 300;
-    font-size: 1.0em;
+    font-size: 1em;
   }
-`
-
-
-const WeblinkCardCategory = styled("p")`
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: capitalize;
-  color: ${colors.teal600};
-  margin: 10px;
-  float: right;
-  background-color: #ffffffe0;
-  width: fit-content;
-  padding: 0px 15px;
-  border-radius: 20px;
 `
 
 const WeblinkCardTitle = styled("h4")`
-
   margin-top: 0.2em;
 `
 
-const WeblinkCardBlurb = styled("div")`
-  margin-top: 0.5em;
-  margin-bottom: 1em;
-  font-size: 0.9em;
-  color: ${colors.grey800};
-
-  @media (max-width: ${dimensions.maxwidthTablet}px) {
-    margin-bottom: 2em;
-  }
-`
-const WeblinkCardWebsites = styled("h5")`
-`
-
+const WeblinkCardWebsites = styled("h5")``
 
 const WeblinkCardImageContainer = styled("div")`
-  height: 150px;
-  background: ${(props) => `url(${props.imgUrl})`};
+  height: 100px;
+  background: ${props => `url(${props.imgUrl})`};
   overflow: hidden;
   background-size: cover;
   background-position: center;
@@ -189,21 +161,19 @@ const WeblinkCard = ({
   //   animateIn="animate__fadeIn"
   //   animateOnce={true}
   // >
-    <WeblinkCardContainer to={link.url} target="_blank" rel="noopener noreferrer">
-      <WeblinkCardContent className="WeblinkCardContent">
-        <WeblinkCardImageContainer imgUrl = {thumbnail.url} className="WeblinkCardImageContainer">
-          <WeblinkCardCategory>{category}</WeblinkCardCategory>
-        </WeblinkCardImageContainer>      
-        <WeblinkTextContent>
-          <ShowMoreText
-            className = "weblinkTitle"
-            lines={2}
-            more=""
-            less=""
-          >
-            <WeblinkCardTitle>{title}</WeblinkCardTitle>
-          </ShowMoreText>
-          <WeblinkCardBlurb>
+  <WeblinkCardContainer to={link.url} target="_blank" rel="noopener noreferrer">
+    <WeblinkCardContent className="WeblinkCardContent">
+      <WeblinkCardImageContainer
+        imgUrl={thumbnail.url}
+        className="WeblinkCardImageContainer"
+      >
+        {/* <WeblinkCardCategory>{category}</WeblinkCardCategory> */}
+      </WeblinkCardImageContainer>
+      <WeblinkTextContent>
+        <ShowMoreText className="weblinkTitle" lines={2} more="" less="">
+          <WeblinkCardTitle>{title}</WeblinkCardTitle>
+        </ShowMoreText>
+        {/* <WeblinkCardBlurb>
             <ShowMoreText
               className = "weblinkDescription"
               lines={3}
@@ -212,20 +182,20 @@ const WeblinkCard = ({
                         >
                 {RichText.render(description)}
               </ShowMoreText>
-              </WeblinkCardBlurb>
-              <ShowMoreText
-              lines={1}
-              more=""
-              expandByClick = {false}
-              className = "weblinkSiteName"
-                        >
-            <WeblinkCardWebsites>{websiteName[0].text} • {websiteLink[0].text}</WeblinkCardWebsites>
-          </ShowMoreText>       
-        </WeblinkTextContent>
-      </WeblinkCardContent>
-
-    </WeblinkCardContainer>
-
+              </WeblinkCardBlurb> */}
+        <ShowMoreText
+          lines={1}
+          more=""
+          expandByClick={false}
+          className="weblinkSiteName"
+        >
+          <WeblinkCardWebsites>
+            {websiteName[0].text} • {websiteLink[0].text}
+          </WeblinkCardWebsites>
+        </ShowMoreText>
+      </WeblinkTextContent>
+    </WeblinkCardContent>
+  </WeblinkCardContainer>
 )
 
 export default WeblinkCard

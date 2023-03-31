@@ -3,7 +3,7 @@ import ScrollAnimation from "react-animate-on-scroll"
 
 const Education = ({ courses }) => (
   <section>
-    <h3>Education</h3>
+    <h2>Academics</h2>
     {courses.map((edu, i) => (
       <div className="info-unit" key={i}>
         <ScrollAnimation

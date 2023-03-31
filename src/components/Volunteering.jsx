@@ -3,7 +3,7 @@ import ScrollAnimation from "react-animate-on-scroll"
 
 const Volunteering = ({ volunteering }) => (
   <section>
-    <h3>Volunteering</h3>
+    <h2>Volunteering</h2>
     {volunteering.map((experience, i) => (
       <div key={i}>
         <ScrollAnimation
